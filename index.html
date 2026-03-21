@@ -13,7 +13,7 @@
 
     <style>
         /* ==========================================================================
-           БАЗОВЫЕ НАСТРОЙКИ И ПЕРЕМЕННЫЕ (СВЕРХБЫСТРАЯ ЗАГРУЗКА)
+           БАЗОВЫЕ НАСТРОЙКИ И ПЕРЕМЕННЫЕ
            ========================================================================== */
         :root {
             --primary: #0056b3;
@@ -47,6 +47,7 @@
             background-color: var(--bg-white);
             line-height: 1.6;
             font-size: 16px;
+            overflow-x: hidden;
         }
 
         img {
@@ -126,7 +127,7 @@
         }
 
         /* ==========================================================================
-           ШАПКА САЙТА (ЛИПКАЯ)
+           ШАПКА САЙТА
            ========================================================================== */
         .header-wrapper {
             position: sticky;
@@ -176,14 +177,6 @@
             color: var(--primary);
         }
 
-        .whatsapp-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #25D366;
-            font-weight: 600;
-        }
-
         .work-time {
             font-size: 13px;
             color: var(--text-muted);
@@ -200,37 +193,33 @@
         }
 
         /* ==========================================================================
-           ГЛАВНЫЙ ЭКРАН (HERO)
+           ПЕРВЫЙ ЭКРАН (ОБНОВЛЕННЫЙ, КАК НА СКРИНШОТЕ)
            ========================================================================== */
         .hero {
             position: relative;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
             color: white;
-            padding: 80px 0;
+            padding: 60px 0 0 0; /* Убрали отступ снизу, чтобы мастер стоял на краю */
             overflow: hidden;
         }
 
-        /* Фоновое изображение мастера (с наложением) */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 50%;
-            background: url('oleg.jpg') center/cover no-repeat;
-            opacity: 0.3;
-            mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-        }
-
-        .hero-content {
+        .hero-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: relative;
-            z-index: 10;
-            max-width: 700px;
         }
 
-        .hero h1 {
+        /* Текст слева */
+        .hero-text-block {
+            flex: 1;
+            max-width: 550px;
+            padding-bottom: 60px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-text-block h1 {
             font-size: 42px;
             font-weight: 800;
             line-height: 1.2;
@@ -245,7 +234,7 @@
         }
 
         .hero-features {
-            margin-bottom: 40px;
+            margin-bottom: 0;
         }
 
         .hero-features li {
@@ -262,411 +251,143 @@
             color: var(--secondary);
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        /* Инлайн форма */
-        .inline-form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: var(--radius);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.2);
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .inline-form input, .inline-form select {
-            flex: 1;
-            min-width: 150px;
-            padding: 12px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 4px;
-            background: rgba(255,255,255,0.9);
-            color: var(--text-main);
-            font-family: inherit;
-        }
-
-        .inline-form button {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        /* ==========================================================================
-           БЛОК 3: СИМПТОМЫ
-           ========================================================================== */
-        .symptoms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .symptom-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: var(--radius);
-            transition: var(--transition);
-            cursor: pointer;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .symptom-card:hover {
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .symptom-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-
-        .symptom-card p {
-            font-weight: 600;
-            margin: 0;
-            align-self: center;
-        }
-
-        .center-btn {
-            display: flex;
-            justify-content: center;
-        }
-
-        /* ==========================================================================
-           БЛОК 4: ЧЕСТНЫЕ ЦЕНЫ
-           ========================================================================== */
-        .prices-table-wrapper {
-            background: var(--bg-white);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .prices-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .prices-table th {
-            background: var(--primary);
-            color: white;
-            padding: 15px 20px;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .prices-table td {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-main);
-        }
-
-        .prices-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .prices-table tr:nth-child(even) {
-            background-color: var(--bg-light);
-        }
-
-        .price-note {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 15px;
-            background: #fff3cd;
-            padding: 15px;
-            border-radius: var(--radius);
-            border: 1px solid #ffe69c;
-            color: #664d03;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* ==========================================================================
-           БЛОК 5: КАК Я РАБОТАЮ (ШАГИ)
-           ========================================================================== */
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .step-card {
-            background: var(--bg-white);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-number {
+        /* Фото мастера по центру */
+        .master-photo-wrapper {
             position: absolute;
-            top: -15px;
-            left: -15px;
-            width: 40px;
-            height: 40px;
-            background: var(--secondary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 20px;
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+            bottom: -20px;
+            left: 53%;
+            transform: translateX(-50%);
+            width: 450px;
+            z-index: 2;
+            pointer-events: none; /* Чтобы фото не мешало кликать */
         }
 
-        .step-card h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: var(--primary);
+        .master-photo-wrapper img {
+            width: 100%;
+            display: block;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
         }
 
-        /* ==========================================================================
-           БЛОК 6 & 7: ГАРАНТИЯ И ФОТО
-           ========================================================================== */
-        .two-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .guarantee-box {
+        /* Форма справа */
+        .hero-form-block {
+            flex: 0 0 360px;
             background: var(--bg-white);
-            padding: 40px;
             border-radius: var(--radius);
-            border-left: 5px solid var(--secondary);
+            padding: 35px 30px;
             box-shadow: var(--shadow-lg);
+            color: var(--text-main);
+            z-index: 3;
+            margin-bottom: 60px;
         }
 
-        .guarantee-box h3 {
+        .hero-form-block h3 {
+            text-align: center;
             font-size: 24px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .guarantee-list li {
-            margin-bottom: 15px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .guarantee-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: bold;
-        }
-
-        .photo-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .photo-grid img {
-            border-radius: var(--radius);
-            object-fit: cover;
-            height: 200px;
-            width: 100%;
-            box-shadow: var(--shadow);
-        }
-
-        .photo-caption {
-            grid-column: 1 / -1;
-            text-align: center;
-            font-style: italic;
-            color: var(--text-muted);
-            margin-top: 10px;
-        }
-
-        /* ==========================================================================
-           БЛОК 8: ГЕОГРАФИЯ
-           ========================================================================== */
-        .city-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .city-card {
-            background: white;
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: var(--radius);
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .city-card:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow);
-        }
-
-        .city-name {
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--primary);
             margin-bottom: 5px;
+            font-weight: 800;
         }
 
-        .city-status {
-            font-size: 14px;
-            color: var(--secondary);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .city-note {
+        .hero-form-block .form-sub {
             text-align: center;
-            margin-top: 30px;
-            font-size: 18px;
-            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
         }
 
-        /* ==========================================================================
-           БЛОК 9: FAQ
-           ========================================================================== */
-        .faq-item {
-            background: var(--bg-white);
-            margin-bottom: 15px;
-            border-radius: var(--radius);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        .hero-form-block input, 
+        .hero-form-block select {
+            width: 100%;
+            padding: 14px;
             border: 1px solid var(--border-color);
-            overflow: hidden;
-        }
-
-        .faq-item summary {
-            padding: 20px;
-            font-weight: 600;
-            font-size: 18px;
-            cursor: pointer;
-            list-style: none;
-            position: relative;
-        }
-
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .faq-item summary::after {
-            content: '+';
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 24px;
-            color: var(--primary);
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            font-family: inherit;
+            font-size: 15px;
+            background: var(--bg-light);
+            outline: none;
             transition: var(--transition);
         }
 
-        .faq-item[open] summary::after {
-            content: '−';
+        .hero-form-block input:focus, 
+        .hero-form-block select:focus {
+            border-color: var(--primary);
+            background: var(--bg-white);
         }
 
-        .faq-item p {
-            padding: 0 20px 20px 20px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            margin-top: 15px;
-            padding-top: 15px;
+        .hero-form-block .btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 18px;
+            margin-top: 5px;
         }
 
         /* ==========================================================================
-           БЛОК 10: ПОДВАЛ / ФИНАЛЬНЫЙ CTA
+           ОСТАЛЬНЫЕ БЛОКИ (БЕЗ ИЗМЕНЕНИЙ)
            ========================================================================== */
-        .final-cta {
-            background: var(--text-main);
-            color: white;
-            text-align: center;
-            padding: 80px 0;
-        }
+        .symptoms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .symptom-card { background: var(--bg-white); border: 1px solid var(--border-color); padding: 25px; border-radius: var(--radius); transition: var(--transition); cursor: pointer; display: flex; align-items: flex-start; gap: 15px; }
+        .symptom-card:hover { box-shadow: var(--shadow-lg); border-color: var(--primary); transform: translateY(-3px); }
+        .symptom-icon { width: 40px; height: 40px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); flex-shrink: 0; }
+        .symptom-card p { font-weight: 600; margin: 0; align-self: center; }
+        .center-btn { display: flex; justify-content: center; }
 
-        .final-cta h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: white;
-        }
+        .prices-table-wrapper { background: var(--bg-white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px; }
+        .prices-table { width: 100%; border-collapse: collapse; }
+        .prices-table th { background: var(--primary); color: white; padding: 15px 20px; text-align: left; font-weight: 600; }
+        .prices-table td { padding: 15px 20px; border-bottom: 1px solid var(--border-color); color: var(--text-main); }
+        .prices-table tr:last-child td { border-bottom: none; }
+        .prices-table tr:nth-child(even) { background-color: var(--bg-light); }
+        .price-note { text-align: center; color: var(--text-muted); font-size: 15px; background: #fff3cd; padding: 15px; border-radius: var(--radius); border: 1px solid #ffe69c; color: #664d03; max-width: 800px; margin: 0 auto; }
 
-        .final-cta p {
-            font-size: 18px;
-            margin-bottom: 40px;
-            color: #9ca3af;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .step-card { background: var(--bg-white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); position: relative; z-index: 1; }
+        .step-number { position: absolute; top: -15px; left: -15px; width: 40px; height: 40px; background: var(--secondary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4); }
+        .step-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--primary); }
 
-        .final-form {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: var(--radius);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+        .two-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .guarantee-box { background: var(--bg-white); padding: 40px; border-radius: var(--radius); border-left: 5px solid var(--secondary); box-shadow: var(--shadow-lg); }
+        .guarantee-box h3 { font-size: 24px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .guarantee-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+        .guarantee-list li::before { content: '✓'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; }
+        
+        .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .photo-grid img { border-radius: var(--radius); object-fit: cover; height: 200px; width: 100%; box-shadow: var(--shadow); }
+        .photo-caption { grid-column: 1 / -1; text-align: center; font-style: italic; color: var(--text-muted); margin-top: 10px; }
 
-        .final-form input, .final-form select {
-            width: 100%;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 16px;
-        }
+        .city-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .city-card { background: white; border: 1px solid var(--border-color); padding: 20px; border-radius: var(--radius); text-align: center; transition: var(--transition); }
+        .city-card:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+        .city-name { font-weight: 700; font-size: 18px; color: var(--primary); margin-bottom: 5px; }
+        .city-status { font-size: 14px; color: var(--secondary); font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .city-note { text-align: center; margin-top: 30px; font-size: 18px; font-weight: 500; }
 
-        .final-form .full-width {
-            grid-column: 1 / -1;
-        }
+        .faq-item { background: var(--bg-white); margin-bottom: 15px; border-radius: var(--radius); box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid var(--border-color); overflow: hidden; }
+        .faq-item summary { padding: 20px; font-weight: 600; font-size: 18px; cursor: pointer; list-style: none; position: relative; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 24px; color: var(--primary); transition: var(--transition); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-item p { padding: 0 20px 20px 20px; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 15px; padding-top: 15px; }
 
-        .final-form .btn-primary {
-            width: 100%;
-            font-size: 18px;
-            padding: 18px;
-        }
+        .final-cta { background: var(--text-main); color: white; text-align: center; padding: 80px 0; }
+        .final-cta h2 { font-size: 32px; margin-bottom: 20px; color: white; }
+        .final-cta p { font-size: 18px; margin-bottom: 40px; color: #9ca3af; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .final-form { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: var(--radius); display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .final-form input, .final-form select { width: 100%; padding: 15px; border: 1px solid var(--border-color); border-radius: var(--radius); font-family: inherit; font-size: 16px; outline: none;}
+        .final-form input:focus, .final-form select:focus { border-color: var(--primary); }
+        .final-form .full-width { grid-column: 1 / -1; }
+        .final-form .btn-primary { width: 100%; font-size: 18px; padding: 18px; }
 
-        .footer {
-            background: #111827;
-            color: #6b7280;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 14px;
-        }
+        .footer { background: #111827; color: #6b7280; text-align: center; padding: 20px 0; font-size: 14px; }
 
         /* ==========================================================================
-           АДАПТИВНОСТЬ (MOBILE FIRST)
+           АДАПТИВНОСТЬ (МОБИЛЬНЫЕ УСТРОЙСТВА)
            ========================================================================== */
-        @media (max-width: 992px) {
-            .hero { padding: 60px 0; }
-            .hero::before { width: 100%; opacity: 0.15; mask-image: none; -webkit-mask-image: none; }
-            .hero h1 { font-size: 32px; }
+        @media (max-width: 1024px) {
+            .hero-container { flex-direction: column; text-align: center; }
+            .hero-text-block { max-width: 100%; padding-bottom: 20px; }
+            .hero-features li { justify-content: center; }
+            .master-photo-wrapper { position: relative; bottom: 0; left: 0; transform: none; width: 320px; margin: 20px auto; }
+            .hero-form-block { width: 100%; max-width: 400px; margin-bottom: 30px; }
             .two-columns { grid-template-columns: 1fr; }
         }
 
@@ -674,13 +395,10 @@
             .header-top { flex-direction: column; gap: 15px; text-align: center; }
             .header-contacts { flex-direction: column; gap: 10px; align-items: center; }
             .contact-item { align-items: center; }
-            
-            .inline-form { flex-direction: column; }
-            .inline-form input, .inline-form select, .inline-form button { width: 100%; min-width: 100%; }
-            
+            .master-photo-wrapper { display: none; /* Прячем фото на мобилках, чтобы форма была выше */ }
             .final-form { grid-template-columns: 1fr; padding: 20px; }
-            
             .prices-table th, .prices-table td { padding: 10px; font-size: 14px; }
+            .section { padding: 50px 0; }
         }
     </style>
 </head>
@@ -691,9 +409,8 @@
         <header class="container">
             <div class="header-top">
                 <div class="logo">
-                    <!-- Иконка снежинки/холода -->
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
-                    Ремонт холодильников на дому
+                    Ремонт холодильников
                 </div>
                 <div class="header-contacts">
                     <div class="contact-item">
@@ -712,50 +429,65 @@
         </div>
     </div>
 
-    <!-- ПЕРВЫЙ ЭКРАН (HERO) -->
+    <!-- ПЕРВЫЙ ЭКРАН (ОБНОВЛЕННЫЙ: ТЕКСТ -> ФОТО -> ФОРМА) -->
     <section class="hero">
-        <div class="container hero-content">
-            <h1>Ремонт холодильников на дому в Пушкино и ближайших городах</h1>
-            <p class="hero-subtitle">Частный мастер. Приезжаю лично. Диагностика → согласование цены → ремонт.</p>
+        <div class="container hero-container">
             
-            <ul class="hero-features">
-                <li>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    Гарантия 1 год на выполненные работы
-                </li>
-                <li>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                    Выдаю акт выполненных работ
-                </li>
-                <li>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                    Выезд/диагностика: 0 ₽ при ремонте / 1500 ₽ при отказе
-                </li>
-                <li>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Работаю по всем популярным маркам и No Frost
-                </li>
-            </ul>
-
-            <div class="hero-buttons">
-                <a href="#cta" class="btn btn-primary">Вызвать мастера сегодня</a>
-                <a href="#prices" class="btn btn-outline">Узнать стоимость работ</a>
+            <!-- Левая колонка: ТЕКСТ -->
+            <div class="hero-text-block">
+                <h1>Ремонт холодильников на дому в Пушкино и ближайших городах</h1>
+                <p class="hero-subtitle">Частный мастер. Приезжаю лично. Диагностика → согласование цены → ремонт.</p>
+                
+                <ul class="hero-features">
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Гарантия 1 год на выполненные работы
+                    </li>
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Выдаю акт выполненных работ
+                    </li>
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        Диагностика: 0 ₽ при ремонте / 1500 ₽ при отказе
+                    </li>
+                    <li>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Работаю по всем популярным маркам и No Frost
+                    </li>
+                </ul>
             </div>
 
-            <form class="inline-form" onsubmit="event.preventDefault(); alert('Заявка отправлена! Мастер свяжется с вами через пару минут.');">
-                <select required>
-                    <option value="" disabled selected>Марка холодильника</option>
-                    <option value="Atlant">Атлант</option>
-                    <option value="LG">LG</option>
-                    <option value="Samsung">Samsung</option>
-                    <option value="Bosch">Bosch</option>
-                    <option value="Indesit">Indesit</option>
-                    <option value="Other">Другая марка</option>
-                </select>
-                <input type="text" placeholder="Симптом (например, не морозит)" required>
-                <input type="tel" placeholder="Ваш телефон" required>
-                <button type="submit" class="btn btn-primary">Цена за 3 минуты</button>
-            </form>
+            <!-- Центральная колонка: ФОТО МАСТЕРА -->
+            <div class="master-photo-wrapper">
+                <!-- ВАЖНО: Тут нужна картинка БЕЗ ФОНА (в формате PNG) -->
+                <!-- Я пока поставил картинку-заглушку из интернета -->
+                <img src="https://i.ibb.co/3s8pPz6/repairman-placeholder.png" alt="Мастер Олег">
+            </div>
+
+            <!-- Правая колонка: ФОРМА -->
+            <div class="hero-form-block" id="top-form">
+                <form onsubmit="event.preventDefault(); alert('Заявка отправлена! Мастер свяжется с вами через пару минут.');">
+                    <h3>Оставьте заявку</h3>
+                    <p class="form-sub">Узнайте стоимость за 3 минуты</p>
+                    
+                    <input type="text" placeholder="Ваше имя*" required>
+                    <input type="tel" placeholder="Ваш телефон*" required>
+                    
+                    <select required>
+                        <option value="" disabled selected>Что случилось?</option>
+                        <option value="Не морозит">Не морозит</option>
+                        <option value="Течет">Течет вода / лужа</option>
+                        <option value="Шумит">Сильно шумит</option>
+                        <option value="Не включается">Не включается</option>
+                        <option value="Пищит">Ошибка на дисплее (пищит)</option>
+                        <option value="Другое">Другая проблема</option>
+                    </select>
+                    
+                    <button type="submit" class="btn btn-primary">Вызвать мастера</button>
+                </form>
+            </div>
+
         </div>
     </section>
 
@@ -765,49 +497,49 @@
             <h2 class="section-title">Выберите симптом — нажмите и получите ориентир цены/срока</h2>
             <div class="symptoms-grid">
                 <!-- Карточки симптомов -->
-                <div class="symptom-card" onclick="document.querySelector('#cta select').value='Не морозит холодильная камера'; document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Не морозит'; document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                     <p>Не морозит холодильная камера</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Не морозит'; document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
                     <p>Не морозит морозилка</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/></svg></div>
                     <p>Намораживает “шубу”, лёд</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Течет'; document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
                     <p>Течёт вода / лужа под холодильником</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Шумит'; document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
                     <p>Сильно шумит / стучит / гудит</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Не включается'; document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
                     <p>Не включается</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
                     <p>Не выключается (работает без остановки)</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Пищит'; document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/></svg></div>
                     <p>Ошибка на дисплее / электроника</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                     <p>No Frost не работает (не оттаивает)</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('cta').scrollIntoView();">
+                <div class="symptom-card" onclick="document.getElementById('top-form').scrollIntoView();">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><line x1="12" y1="3" x2="12" y2="21"/></svg></div>
                     <p>Плохо закрывается дверь / резинка</p>
                 </div>
             </div>
             <div class="center-btn">
-                <a href="#cta" class="btn btn-primary">Опишите симптом — скажу цену до выезда</a>
+                <a href="#top-form" class="btn btn-primary">Опишите симптом — скажу цену до выезда</a>
             </div>
         </div>
     </section>
@@ -918,7 +650,6 @@
             
             <div class="master-photos">
                 <div class="photo-grid">
-                    <!-- Заглушки для фото мастера и работ -->
                     <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Мастер в работе">
                     <img src="https://images.unsplash.com/photo-1581092335878-2d9fd86aecf3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Инструменты">
                     <p class="photo-caption">Приезжаю лично. Без посредников и «передачи заказа».</p>
