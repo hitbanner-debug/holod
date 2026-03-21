@@ -1,3 +1,5 @@
+code
+Html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -23,7 +25,6 @@
             --text-main: #1f2937;
             --text-muted: #6b7280;
             --bg-light: #f9fafb;
-            
             --bg-white: #ffffff;
             --border-color: #e5e7eb;
             --radius: 8px;
@@ -88,11 +89,14 @@
 
         /* ФОТО МАСТЕРА */
         .master-photo-wrapper {
-    position: static;
-    width: 520px;          /* УВЕЛИЧИВАЕМ! это главный параметр размера */
-    margin: 40px 40px 0;   /* можно потом подправить первую цифру, если надо опустить/поднять */
-    pointer-events: none;
-}
+            position: absolute;
+            bottom: -80px; /* <--- ОЛЕГ ОПУЩЕН НИЖЕ */
+            left: 53%;
+            transform: translateX(-50%);
+            width: 450px;
+            z-index: 2;
+            pointer-events: none;
+        }
         .master-photo-wrapper img { width: 100%; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
 
         /* ФОРМА (С ИДЕАЛЬНЫМ ОТСТУПОМ ДЛЯ СКРОЛЛА) */
