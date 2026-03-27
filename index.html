@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -33,7 +32,6 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         html { scroll-behavior: smooth; }
 
         body {
@@ -83,20 +81,22 @@
         .hero-text-block h1 { font-size: 42px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
         .hero-subtitle { font-size: 20px; font-weight: 500; margin-bottom: 30px; color: #e0f2fe; }
         .hero-features { margin-bottom: 0; }
-        .hero-features li { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 18px; font-weight: 500; }
-        .hero-features svg { flex-shrink: 0; color: var(--secondary); }
+        .hero-features li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px; font-size: 18px; font-weight: 500; }
+        .hero-features svg { flex-shrink: 0; color: var(--secondary); margin-top: 3px; }
 
         /* ФОТО МАСТЕРА */
         .master-photo-wrapper {
             position: absolute;
-            bottom: -80px; /* <--- ОЛЕГ ОПУЩЕН НИЖЕ */
-            left: 53%;
+            bottom: -10px;
+            left: 50%;
             transform: translateX(-50%);
-            width: 450px;
+            height: 90%; 
             z-index: 2;
             pointer-events: none;
+            display: flex;
+            align-items: flex-end;
         }
-        .master-photo-wrapper img { width: 100%; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
+        .master-photo-wrapper img { height: 100%; width: auto; object-fit: contain; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
 
         /* ФОРМА (С ИДЕАЛЬНЫМ ОТСТУПОМ ДЛЯ СКРОЛЛА) */
         .hero-form-block {
@@ -108,7 +108,7 @@
             color: var(--text-main);
             z-index: 3;
             margin-bottom: 60px;
-            scroll-margin-top: 140px; /* <--- МАГИЯ ДЛЯ ИДЕАЛЬНОГО СКРОЛЛА */
+            scroll-margin-top: 140px;
         }
         .hero-form-block h3 { text-align: center; font-size: 24px; margin-bottom: 5px; font-weight: 800; }
         .hero-form-block .form-sub { text-align: center; font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
@@ -176,22 +176,45 @@
         .footer { background: #111827; color: #6b7280; text-align: center; padding: 20px 0; font-size: 14px; }
 
         /* ==========================================================================
-           АДАПТИВНОСТЬ
+           АДАПТИВНОСТЬ (МОБИЛЬНЫЕ ТЕЛЕФОНЫ И ПЛАНШЕТЫ)
            ========================================================================== */
         @media (max-width: 1024px) {
+            .hero { padding: 40px 0 0 0; }
             .hero-container { flex-direction: column; text-align: center; }
-            .hero-text-block { max-width: 100%; padding-bottom: 20px; }
-            .hero-features li { justify-content: center; }
-            .master-photo-wrapper { position: relative; bottom: 0; left: 0; transform: none; width: 320px; margin: 20px auto; }
-            .hero-form-block { width: 100%; max-width: 400px; margin-bottom: 30px; }
+            .hero-text-block { max-width: 100%; padding-bottom: 10px; }
+            .hero-features li { text-align: left; }
+            
+            /* ФОТО МАСТЕРА ВОЗВРАЩАЕТСЯ НА МОБИЛЬНЫЕ УСТРОЙСТВА! */
+            .master-photo-wrapper { 
+                position: relative; 
+                bottom: 0; 
+                left: 0; 
+                transform: none; 
+                width: 100%; 
+                max-width: 320px; 
+                height: auto;
+                margin: 0 auto; 
+                display: block !important; 
+            }
+            .master-photo-wrapper img { width: 100%; height: auto; object-fit: contain; }
+            
+            .hero-form-block { width: 100%; max-width: 450px; margin: 20px auto 40px auto; }
             .two-columns { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            .header-top { flex-direction: column; gap: 15px; text-align: center; }
-            .header-contacts { flex-direction: column; gap: 10px; align-items: center; }
-            .contact-item { align-items: center; }
-            .master-photo-wrapper { display: none; }
+            .header-top { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+            .logo { font-size: 18px; }
+            .header-contacts { flex-direction: row; width: 100%; justify-content: space-between; margin-top: 15px; }
+            .contact-item { align-items: flex-start; }
+            .phone-link { font-size: 18px; }
+            
+            /* Принудительно показываем фото */
+            .master-photo-wrapper { display: block !important; }
+            
+            .hero-text-block h1 { font-size: 32px; margin-bottom: 15px; }
+            .hero-subtitle { font-size: 18px; margin-bottom: 20px; }
+            
             .final-form { grid-template-columns: 1fr; padding: 20px; }
             .prices-table th, .prices-table td { padding: 10px; font-size: 14px; }
             .section { padding: 50px 0; }
@@ -211,7 +234,7 @@
                 <div class="header-contacts">
                     <div class="contact-item">
                         <a href="tel:+79990000000" class="phone-link">+7 (999) 000-00-00</a>
-                        <span class="work-time">Работаю: 08:00 - 22:00 (Ежедневно)</span>
+                        <span class="work-time">Работаю: 08:00 - 22:00</span>
                     </div>
                     <a href="https://wa.me/79990000000" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary); padding: 8px 16px;">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -245,16 +268,12 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                         Диагностика: 0 ₽ при ремонте / 1500 ₽ при отказе
                     </li>
-                    <li>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        Работаю по всем популярным маркам и No Frost
-                    </li>
                 </ul>
             </div>
 
-            <!-- ФОТО ОЛЕГА -->
+            <!-- ФОТО ОЛЕГА (ТЕПЕРЬ ВИДНО НА СМАРТФОНЕ) -->
             <div class="master-photo-wrapper">
-                <img src="Oleg (2).png" alt="Мастер Олег">
+                <img src="oleg.png" alt="Мастер Олег">
             </div>
 
             <!-- ФОРМА (ЯКОРЬ #top-form) -->
@@ -287,49 +306,49 @@
         <div class="container">
             <h2 class="section-title">Выберите симптом — нажмите и получите ориентир цены/срока</h2>
             <div class="symptoms-grid">
-                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Не морозит'; document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Не морозит')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                     <p>Не морозит холодильная камера</p>
                 </div>
-                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Не морозит'; document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Не морозит')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
                     <p>Не морозит морозилка</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Другое')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/></svg></div>
                     <p>Намораживает “шубу”, лёд</p>
                 </div>
-                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Течет'; document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Течет')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
                     <p>Течёт вода / лужа под холодильником</p>
                 </div>
-                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Шумит'; document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Шумит')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
                     <p>Сильно шумит / стучит / гудит</p>
                 </div>
-                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Не включается'; document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Не включается')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
                     <p>Не включается</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Другое')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
                     <p>Не выключается (работает без остановки)</p>
                 </div>
-                <div class="symptom-card" onclick="document.querySelector('#top-form select').value='Пищит'; document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Пищит')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/></svg></div>
                     <p>Ошибка на дисплее / электроника</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Другое')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
                     <p>No Frost не работает (не оттаивает)</p>
                 </div>
-                <div class="symptom-card" onclick="document.getElementById('top-form').scrollIntoView({behavior: 'smooth'});">
+                <div class="symptom-card" onclick="scrollToForm('Другое')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><line x1="12" y1="3" x2="12" y2="21"/></svg></div>
                     <p>Плохо закрывается дверь / резинка</p>
                 </div>
             </div>
             <div class="center-btn">
-                <a href="#top-form" class="btn btn-primary" onclick="document.getElementById('top-form').scrollIntoView({behavior: 'smooth'}); return false;">Опишите симптом — скажу цену до выезда</a>
+                <button type="button" class="btn btn-primary" onclick="scrollToForm()">Опишите симптом — скажу цену до выезда</button>
             </div>
         </div>
     </section>
@@ -362,6 +381,7 @@
             </p>
         </div>
     </section>
+
     <!-- О МАСТЕРЕ И ПРЕИМУЩЕСТВА -->
     <section id="about-master" class="section section-light">
         <div class="container two-columns" style="align-items: center;">
@@ -387,9 +407,9 @@
             </div>
             
             <div class="about-photo-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow-lg); border-top: 5px solid var(--primary);">
-                <!-- Сюда подтянется та же картинка мастера, что и на первом экране -->
+                <!-- Фото мастера для блока преимуществ -->
                 <div style="width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; background: var(--bg-light);">
-                    <img src="Oleg (2).png" alt="Частный мастер" style="width: 100%; height: 100%; object-fit: cover; object-position: center 10%; transform: scale(1.5);">
+                    <img src="oleg.png" alt="Частный мастер" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
                 </div>
                 <h3 style="font-size: 24px; color: var(--text-main); margin-bottom: 5px;">Олег</h3>
                 <p style="color: var(--secondary); font-weight: 600; font-size: 16px;">Ваш мастер по ремонту холодильников</p>
@@ -402,7 +422,7 @@
     </section>
 
     <!-- КАК Я РАБОТАЮ -->
-    <section id="process" class="section section-light">
+    <section id="process" class="section">
         <div class="container">
             <h2 class="section-title">Как я работаю</h2>
             <div class="steps-grid">
@@ -417,7 +437,7 @@
     </section>
 
     <!-- ГАРАНТИЯ И ФОТО -->
-    <section id="guarantee" class="section">
+    <section id="guarantee" class="section section-light">
         <div class="container two-columns">
             <div class="guarantee-box">
                 <h3>
@@ -442,7 +462,7 @@
     </section>
 
     <!-- ГЕОГРАФИЯ -->
-    <section class="section section-light">
+    <section class="section">
         <div class="container">
             <h2 class="section-title">География и время выезда</h2>
             <div class="city-grid">
@@ -460,7 +480,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section">
+    <section class="section section-light">
         <div class="container" style="max-width: 800px;">
             <h2 class="section-title">Частые вопросы</h2>
             <details class="faq-item"><summary>Сколько стоит диагностика?</summary><p>0 ₽ при ремонте. Если ремонт мы не делаем — 1500 ₽ (выезд + диагностика).</p></details>
@@ -513,5 +533,32 @@
         </div>
     </footer>
 
+    <!-- Скрипт для прокрутки и анимации формы -->
+    <script>
+        function scrollToForm(symptomValue) {
+            const select = document.querySelector('#top-form select');
+            if (symptomValue && select) {
+                select.value = symptomValue;
+            }
+            
+            // Скроллим наверх
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // Анимация формы
+            const formBlock = document.getElementById('top-form');
+            if (formBlock) {
+                formBlock.style.transition = 'all 0.4s ease';
+                formBlock.style.transform = 'scale(1.03)';
+                formBlock.style.boxShadow = '0 0 25px rgba(16, 185, 129, 0.4)';
+                setTimeout(() => {
+                    formBlock.style.transform = 'scale(1)';
+                    formBlock.style.boxShadow = 'var(--shadow-lg)';
+                }, 1000);
+            }
+        }
+    </script>
 </body>
 </html>
