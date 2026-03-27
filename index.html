@@ -59,46 +59,113 @@
         .btn-outline:hover { background-color: white; color: var(--primary); }
 
         /* ==========================================================================
-           ШАПКА САЙТА
+           ШАПКА САЙТА (ИДЕАЛЬНАЯ ПО ТЗ КЛИЕНТА)
            ========================================================================== */
-        .header-wrapper { position: sticky; top: 0; z-index: 1000; background: rgba(255, 255, 255, 0.98); box-shadow: 0 2px 10px rgba(0,0,0,0.05); backdrop-filter: blur(10px); }
-        .header-top { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--border-color); }
-        .logo { font-size: 22px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-        .header-contacts { display: flex; align-items: center; gap: 25px; }
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+            border-bottom: 2px solid var(--primary);
+        }
+        .top-bar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* Блок мастера прямо в шапке */
+        .master-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .master-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--bg-light);
+            border: 2px solid var(--primary);
+            flex-shrink: 0;
+        }
+        /* Умный зум лица для аватарки */
+        .master-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transform: scale(1.3);
+            margin-top: 5px;
+        }
+        .master-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .master-info strong {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+        .master-info span {
+            font-size: 13px;
+            color: var(--secondary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-contacts {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
         .contact-item { display: flex; flex-direction: column; align-items: flex-end; }
         .phone-link { font-size: 20px; font-weight: 800; color: var(--text-main); }
         .phone-link:hover { color: var(--primary); }
         .work-time { font-size: 13px; color: var(--text-muted); }
-        .cities-bar { padding: 10px 0; background: var(--bg-light); font-size: 14px; color: var(--text-muted); text-align: center; overflow-x: auto; white-space: nowrap; }
 
         /* ==========================================================================
-           ПЕРВЫЙ ЭКРАН 
+           ПЕРВЫЙ ЭКРАН (ГЕРОЙ)
            ========================================================================== */
-        .hero { position: relative; background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); color: white; padding: 60px 0 0 0; overflow: hidden; }
-        .hero-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .hero { position: relative; background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); color: white; padding: 50px 0 0 0; overflow: hidden; }
+        .hero-container { display: flex; justify-content: space-between; align-items: stretch; position: relative; }
 
-        .hero-text-block { flex: 1; max-width: 550px; padding-bottom: 60px; position: relative; z-index: 3; }
+        .hero-text-block { flex: 1; max-width: 580px; padding-bottom: 60px; position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; }
+        
+        /* Плашка "Частный мастер" */
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 15px; border-radius: 30px; font-size: 14px; font-weight: 600; margin-bottom: 20px; align-self: flex-start; }
+        
         .hero-text-block h1 { font-size: 42px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
-        .hero-subtitle { font-size: 20px; font-weight: 500; margin-bottom: 30px; color: #e0f2fe; }
+        .hero-subtitle { font-size: 18px; font-weight: 500; margin-bottom: 30px; color: #e0f2fe; }
+        
         .hero-features { margin-bottom: 0; }
         .hero-features li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px; font-size: 18px; font-weight: 500; }
         .hero-features svg { flex-shrink: 0; color: var(--secondary); margin-top: 3px; }
 
         /* ФОТО МАСТЕРА */
-        .master-photo-wrapper {
+        .hero-master-img {
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            height: 90%; 
+            height: 95%; 
             z-index: 2;
             pointer-events: none;
             display: flex;
             align-items: flex-end;
         }
-        .master-photo-wrapper img { height: 100%; width: auto; object-fit: contain; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
+        .hero-master-img img { height: 100%; width: auto; object-fit: contain; display: block; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
+        
+        /* Блок фото мастера для мобилки (скрыт на ПК) */
+        .mobile-hero-photo { display: none; }
 
-        /* ФОРМА (С ИДЕАЛЬНЫМ ОТСТУПОМ ДЛЯ СКРОЛЛА) */
+        /* ФОРМА ЗАЯВКИ */
         .hero-form-block {
             flex: 0 0 360px;
             background: var(--bg-white);
@@ -108,7 +175,7 @@
             color: var(--text-main);
             z-index: 3;
             margin-bottom: 60px;
-            scroll-margin-top: 140px;
+            margin-top: 10px;
         }
         .hero-form-block h3 { text-align: center; font-size: 24px; margin-bottom: 5px; font-weight: 800; }
         .hero-form-block .form-sub { text-align: center; font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
@@ -126,7 +193,9 @@
         .symptom-card p { font-weight: 600; margin: 0; align-self: center; }
         .center-btn { display: flex; justify-content: center; }
 
-        /* ОСТАЛЬНЫЕ БЛОКИ */
+        /* ==========================================================================
+           ОСТАЛЬНЫЕ БЛОКИ
+           ========================================================================== */
         .prices-table-wrapper { background: var(--bg-white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 20px; }
         .prices-table { width: 100%; border-collapse: collapse; }
         .prices-table th { background: var(--primary); color: white; padding: 15px 20px; text-align: left; font-weight: 600; }
@@ -176,44 +245,48 @@
         .footer { background: #111827; color: #6b7280; text-align: center; padding: 20px 0; font-size: 14px; }
 
         /* ==========================================================================
-           АДАПТИВНОСТЬ (МОБИЛЬНЫЕ ТЕЛЕФОНЫ И ПЛАНШЕТЫ)
+           АДАПТИВНОСТЬ (МОБИЛЬНАЯ ВЕРСИЯ - ПРИОРИТЕТ)
            ========================================================================== */
         @media (max-width: 1024px) {
-            .hero { padding: 40px 0 0 0; }
-            .hero-container { flex-direction: column; text-align: center; }
-            .hero-text-block { max-width: 100%; padding-bottom: 10px; }
-            .hero-features li { text-align: left; }
+            .hero-master-img { display: none; /* Прячем фонового мастера на планшетах/мобильных */ }
+            .hero { padding: 30px 0 0 0; }
+            .hero-container { flex-direction: column; text-align: left; }
+            .hero-text-block { max-width: 100%; padding-bottom: 20px; align-items: center; text-align: center;}
+            .hero-features li { text-align: left; justify-content: center; }
             
-            /* ФОТО МАСТЕРА ВОЗВРАЩАЕТСЯ НА МОБИЛЬНЫЕ УСТРОЙСТВА! */
-            .master-photo-wrapper { 
-                position: relative; 
-                bottom: 0; 
-                left: 0; 
-                transform: none; 
-                width: 100%; 
-                max-width: 320px; 
-                height: auto;
-                margin: 0 auto; 
-                display: block !important; 
+            /* На мобилке мастер отображается как полноценный блок ПЕРЕД формой */
+            .mobile-hero-photo {
+                display: block;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto 10px auto;
+                position: relative;
+                z-index: 2;
             }
-            .master-photo-wrapper img { width: 100%; height: auto; object-fit: contain; }
+            .mobile-hero-photo img {
+                width: 100%;
+                height: auto;
+                display: block;
+                filter: drop-shadow(0 10px 10px rgba(0,0,0,0.4));
+            }
             
-            .hero-form-block { width: 100%; max-width: 450px; margin: 20px auto 40px auto; }
+            .hero-form-block { width: 100%; max-width: 450px; margin: 0 auto 40px auto; }
             .two-columns { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            .header-top { flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
-            .logo { font-size: 18px; }
-            .header-contacts { flex-direction: row; width: 100%; justify-content: space-between; margin-top: 15px; }
-            .contact-item { align-items: flex-start; }
-            .phone-link { font-size: 18px; }
+            .top-bar-inner { flex-direction: row; justify-content: space-between; }
+            .master-profile { gap: 10px; }
+            .master-avatar { width: 44px; height: 44px; }
+            .master-info strong { font-size: 15px; }
             
-            /* Принудительно показываем фото */
-            .master-photo-wrapper { display: block !important; }
+            .header-contacts { gap: 15px; }
+            .work-time { display: none; /* Скрываем часы на мобильном для экономии места */ }
+            .phone-link { font-size: 16px; }
             
-            .hero-text-block h1 { font-size: 32px; margin-bottom: 15px; }
-            .hero-subtitle { font-size: 18px; margin-bottom: 20px; }
+            .hero-text-block h1 { font-size: 30px; margin-bottom: 15px; }
+            .hero-subtitle { font-size: 16px; margin-bottom: 20px; }
+            .hero-features li { font-size: 15px; justify-content: flex-start; }
             
             .final-form { grid-template-columns: 1fr; padding: 20px; }
             .prices-table th, .prices-table td { padding: 10px; font-size: 14px; }
@@ -223,56 +296,55 @@
 </head>
 <body>
 
-    <!-- ШАПКА -->
-    <div class="header-wrapper">
-        <header class="container">
-            <div class="header-top">
-                <div class="logo">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg>
-                    Ремонт холодильников
+    <!-- ИДЕАЛЬНАЯ ШАПКА: ФОТО + ИМЯ + ТЕЛЕФОН -->
+    <header class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="master-profile">
+                <div class="master-avatar">
+                    <img src="oleg.png" alt="Мастер Олег">
                 </div>
-                <div class="header-contacts">
-                    <div class="contact-item">
-                        <a href="tel:+79990000000" class="phone-link">+7 (999) 000-00-00</a>
-                        <span class="work-time">Работаю: 08:00 - 22:00</span>
-                    </div>
-                    <a href="https://wa.me/79990000000" class="btn btn-outline" style="color: var(--primary); border-color: var(--primary); padding: 8px 16px;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        WhatsApp
-                    </a>
+                <div class="master-info">
+                    <strong>Олег</strong>
+                    <span><span style="color: #10b981;">●</span> Ваш частный мастер</span>
                 </div>
             </div>
-        </header>
-        <div class="cities-bar">
-            Пушкино · Ивантеевка · Мытищи · Королёв · Фрязино · Щёлково · Сергиев Посад · Красноармейск
+            <div class="header-contacts">
+                <div class="contact-item">
+                    <a href="tel:+79990000000" class="phone-link">+7 (999) 000-00-00</a>
+                    <span class="work-time">Ежедневно: 08:00 - 22:00</span>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
 
     <!-- ПЕРВЫЙ ЭКРАН -->
     <section class="hero">
         <div class="container hero-container">
+            
             <div class="hero-text-block">
-                <h1>Ремонт холодильников на дому в Пушкино и ближайших городах</h1>
-                <p class="hero-subtitle">Частный мастер. Приезжаю лично. Диагностика → согласование цены → ремонт.</p>
+                <div class="hero-badge">Работаю на себя. Цены ниже фирм на 40%</div>
+                <h1>Ремонт холодильников на дому в Пушкино и области</h1>
+                <p class="hero-subtitle">Приезжаю лично. Бесплатный выезд. Оплата только за результат.</p>
                 
                 <ul class="hero-features">
                     <li>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        Гарантия 1 год на выполненные работы
+                        Гарантия 1 год на все выполненные работы
                     </li>
                     <li>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        Выдаю акт выполненных работ
-                    </li>
-                    <li>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                         Диагностика: 0 ₽ при ремонте / 1500 ₽ при отказе
                     </li>
                 </ul>
             </div>
 
-            <!-- ФОТО ОЛЕГА (ТЕПЕРЬ ВИДНО НА СМАРТФОНЕ) -->
-            <div class="master-photo-wrapper">
+            <!-- ФОТО МАСТЕРА (ПК) -->
+            <div class="hero-master-img">
+                <img src="oleg.png" alt="Мастер Олег">
+            </div>
+
+            <!-- ФОТО МАСТЕРА (МОБИЛЬНАЯ ВЕРСИЯ - СРАЗУ ПОСЛЕ ТЕКСТА) -->
+            <div class="mobile-hero-photo">
                 <img src="oleg.png" alt="Мастер Олег">
             </div>
 
@@ -280,18 +352,18 @@
             <div class="hero-form-block" id="top-form">
                 <form onsubmit="event.preventDefault(); alert('Заявка отправлена! Мастер свяжется с вами через пару минут.');">
                     <h3>Оставьте заявку</h3>
-                    <p class="form-sub">Узнайте стоимость за 3 минуты</p>
+                    <p class="form-sub">Узнайте стоимость ремонта за 3 минуты</p>
                     
                     <input type="text" placeholder="Ваше имя*" required>
                     <input type="tel" placeholder="Ваш телефон*" required>
                     
                     <select required>
-                        <option value="" disabled selected>Что случилось?</option>
+                        <option value="" disabled selected>Что случилось с холодильником?</option>
                         <option value="Не морозит">Не морозит</option>
                         <option value="Течет">Течет вода / лужа</option>
-                        <option value="Шумит">Сильно шумит</option>
+                        <option value="Шумит">Сильно шумит / стучит</option>
                         <option value="Не включается">Не включается</option>
-                        <option value="Пищит">Ошибка на дисплее (пищит)</option>
+                        <option value="Пищит">Выдает ошибку / пищит</option>
                         <option value="Другое">Другая проблема</option>
                     </select>
                     
@@ -304,7 +376,7 @@
     <!-- СИМПТОМЫ -->
     <section id="symptoms" class="section section-light">
         <div class="container">
-            <h2 class="section-title">Выберите симптом — нажмите и получите ориентир цены/срока</h2>
+            <h2 class="section-title">С чем чаще всего обращаетесь?</h2>
             <div class="symptoms-grid">
                 <div class="symptom-card" onclick="scrollToForm('Не морозит')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
@@ -320,11 +392,11 @@
                 </div>
                 <div class="symptom-card" onclick="scrollToForm('Течет')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
-                    <p>Течёт вода / лужа под холодильником</p>
+                    <p>Течёт вода / лужа</p>
                 </div>
                 <div class="symptom-card" onclick="scrollToForm('Шумит')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg></div>
-                    <p>Сильно шумит / стучит / гудит</p>
+                    <p>Сильно шумит / гудит</p>
                 </div>
                 <div class="symptom-card" onclick="scrollToForm('Не включается')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg></div>
@@ -332,19 +404,11 @@
                 </div>
                 <div class="symptom-card" onclick="scrollToForm('Другое')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-                    <p>Не выключается (работает без остановки)</p>
+                    <p>Работает без остановки</p>
                 </div>
                 <div class="symptom-card" onclick="scrollToForm('Пищит')">
                     <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/></svg></div>
-                    <p>Ошибка на дисплее / электроника</p>
-                </div>
-                <div class="symptom-card" onclick="scrollToForm('Другое')">
-                    <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-                    <p>No Frost не работает (не оттаивает)</p>
-                </div>
-                <div class="symptom-card" onclick="scrollToForm('Другое')">
-                    <div class="symptom-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><line x1="12" y1="3" x2="12" y2="21"/></svg></div>
-                    <p>Плохо закрывается дверь / резинка</p>
+                    <p>Ошибка на дисплее (пищит)</p>
                 </div>
             </div>
             <div class="center-btn">
@@ -368,7 +432,7 @@
                     <tbody>
                         <tr><td>Выезд и диагностика (при ремонте)</td><td><strong>0 ₽</strong></td></tr>
                         <tr><td>Выезд и диагностика (если ремонт не делаем)</td><td><strong>1500 ₽</strong></td></tr>
-                        <tr><td>Мелкий ремонт (регулировка, прочистка и т.п.)</td><td>от 1200 ₽</td></tr>
+                        <tr><td>Мелкий ремонт (регулировка, прочистка)</td><td>от 1200 ₽</td></tr>
                         <tr><td>Замена датчика/термостата</td><td>от 1500 ₽</td></tr>
                         <tr><td>Заправка фреоном / устранение утечки</td><td>от 2500 ₽</td></tr>
                         <tr><td>Ремонт No Frost (система оттайки)</td><td>от 2000 ₽</td></tr>
@@ -401,21 +465,21 @@
                     </li>
                     <li style="margin-top: 15px;">
                         <strong style="color: var(--text-main); font-size: 18px;">Личная ответственность</strong><br>
-                        Фирмы-однодневки меняют названия и номера. Я работаю на свою репутацию в своём городе, поэтому даю честную гарантию 1 год и всегда на связи.
+                        Фирмы-однодневки меняют названия и номера. Я работаю на свою репутацию в своём городе, поэтому даю честную гарантию 1 год.
                     </li>
                 </ul>
             </div>
             
             <div class="about-photo-card" style="background: var(--bg-white); padding: 40px; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow-lg); border-top: 5px solid var(--primary);">
-                <!-- Фото мастера для блока преимуществ -->
+                <!-- Фото мастера для блока преимуществ с умным кропом -->
                 <div style="width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; background: var(--bg-light);">
-                    <img src="oleg.png" alt="Частный мастер" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                    <img src="oleg.png" alt="Олег" style="width: 100%; height: 100%; object-fit: cover; object-position: top; transform: scale(1.3); margin-top: 10px;">
                 </div>
                 <h3 style="font-size: 24px; color: var(--text-main); margin-bottom: 5px;">Олег</h3>
-                <p style="color: var(--secondary); font-weight: 600; font-size: 16px;">Ваш мастер по ремонту холодильников</p>
+                <p style="color: var(--secondary); font-weight: 600; font-size: 16px;">Ваш частный мастер</p>
                 <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 14px;">
                     Опыт работы: более 8 лет<br>
-                    Оригинальные запчасти всегда в багажнике
+                    Оригинальные запчасти с собой
                 </div>
             </div>
         </div>
@@ -426,12 +490,12 @@
         <div class="container">
             <h2 class="section-title">Как я работаю</h2>
             <div class="steps-grid">
-                <div class="step-card"><div class="step-number">1</div><h3>Вы оставляете заявку</h3><p>Через форму на сайте, мессенджер или по телефону.</p></div>
-                <div class="step-card"><div class="step-number">2</div><h3>Уточняю детали</h3><p>Спрашиваю марку, симптом поломки и ваш адрес.</p></div>
-                <div class="step-card"><div class="step-number">3</div><h3>Диагностика на месте</h3><p>Приезжаю в оговоренное время и выявляю точную причину поломки.</p></div>
-                <div class="step-card"><div class="step-number">4</div><h3>Озвучиваю стоимость</h3><p>Предлагаю варианты (оригинал/аналог запчасти), фиксируем цену до начала работ.</p></div>
-                <div class="step-card"><div class="step-number">5</div><h3>Ремонт и тест</h3><p>Устраняю неисправность и при вас проверяю работу холодильника.</p></div>
-                <div class="step-card"><div class="step-number">6</div><h3>Документы и гарантия</h3><p>Выдаю акт выполненных работ и гарантию на 1 год.</p></div>
+                <div class="step-card"><div class="step-number">1</div><h3>Заявка</h3><p>Оставляете заявку через форму или по телефону.</p></div>
+                <div class="step-card"><div class="step-number">2</div><h3>Уточнение деталей</h3><p>Спрашиваю марку, симптом поломки и ваш адрес.</p></div>
+                <div class="step-card"><div class="step-number">3</div><h3>Диагностика</h3><p>Приезжаю и выявляю точную причину поломки.</p></div>
+                <div class="step-card"><div class="step-number">4</div><h3>Согласование цены</h3><p>Предлагаю варианты запчастей, фиксируем цену.</p></div>
+                <div class="step-card"><div class="step-number">5</div><h3>Ремонт и тест</h3><p>Устраняю неисправность и при вас проверяю работу.</p></div>
+                <div class="step-card"><div class="step-number">6</div><h3>Акт и гарантия</h3><p>Выдаю акт выполненных работ и гарантию на 1 год.</p></div>
             </div>
         </div>
     </section>
@@ -447,7 +511,7 @@
                 <ul class="guarantee-list">
                     <li>В акте фиксируется перечень работ, стоимость и гарантийный срок.</li>
                     <li>При повторении той же неисправности — устраняю по гарантии бесплатно.</li>
-                    <li>Бесплатная консультация по эксплуатации, чтобы поломка не повторялась.</li>
+                    <li>Консультация по эксплуатации, чтобы поломка не повторялась.</li>
                 </ul>
             </div>
             
@@ -461,35 +525,14 @@
         </div>
     </section>
 
-    <!-- ГЕОГРАФИЯ -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">География и время выезда</h2>
-            <div class="city-grid">
-                <div class="city-card"><div class="city-name">Пушкино</div><div class="city-status"><span style="color:var(--secondary);">●</span> Выезд сегодня</div></div>
-                <div class="city-card"><div class="city-name">Ивантеевка</div><div class="city-status"><span style="color:var(--secondary);">●</span> Выезд сегодня</div></div>
-                <div class="city-card"><div class="city-name">Мытищи</div><div class="city-status"><span style="color:var(--secondary);">●</span> Выезд сегодня</div></div>
-                <div class="city-card"><div class="city-name">Королёв</div><div class="city-status"><span style="color:var(--secondary);">●</span> Выезд сегодня</div></div>
-                <div class="city-card"><div class="city-name">Фрязино</div><div class="city-status"><span style="color:var(--secondary);">●</span> Выезд сегодня</div></div>
-                <div class="city-card"><div class="city-name">Щёлково</div><div class="city-status"><span style="color:var(--secondary);">●</span> Выезд сегодня</div></div>
-                <div class="city-card"><div class="city-name">Сергиев Посад</div><div class="city-status"><span style="color:var(--secondary);">●</span> Выезд сегодня</div></div>
-                <div class="city-card"><div class="city-name">Красноармейск</div><div class="city-status"><span style="color:var(--secondary);">●</span> Выезд сегодня</div></div>
-            </div>
-            <p class="city-note">Ориентир по времени приезда скажу после адреса и оценки текущей загрузки.</p>
-        </div>
-    </section>
-
     <!-- FAQ -->
-    <section class="section section-light">
+    <section class="section">
         <div class="container" style="max-width: 800px;">
             <h2 class="section-title">Частые вопросы</h2>
             <details class="faq-item"><summary>Сколько стоит диагностика?</summary><p>0 ₽ при ремонте. Если ремонт мы не делаем — 1500 ₽ (выезд + диагностика).</p></details>
-            <details class="faq-item"><summary>Вы точно назовёте цену до ремонта?</summary><p>Да, после диагностики я называю точную стоимость и начинаю ремонт только после вашего согласования. Никаких сюрпризов после работы.</p></details>
-            <details class="faq-item"><summary>Даете ли документы?</summary><p>Да, обязательно выдаю акт выполненных работ.</p></details>
-            <details class="faq-item"><summary>Какая гарантия?</summary><p>1 год на выполненные работы (точные условия зависят от типа ремонта — всё пропишу в акте).</p></details>
-            <details class="faq-item"><summary>Работаете с системой No Frost?</summary><p>Да, ремонтирую все типовые узлы системы оттайки, вентиляторы, датчики.</p></details>
-            <details class="faq-item"><summary>Если холодильник старый, стоит ли ремонтировать?</summary><p>Я скажу честно: есть ли смысл вкладываться в ремонт или вам выгоднее и надежнее будет купить новый.</p></details>
-            <details class="faq-item"><summary>Запчасти оригинальные?</summary><p>Всё по согласованию: можем поставить оригинал или качественный, проверенный аналог.</p></details>
+            <details class="faq-item"><summary>Вы точно назовёте цену до ремонта?</summary><p>Да, после диагностики я называю точную стоимость и начинаю ремонт только после согласования.</p></details>
+            <details class="faq-item"><summary>Какая гарантия?</summary><p>1 год на выполненные работы (прописывается в акте).</p></details>
+            <details class="faq-item"><summary>Работаете с системой No Frost?</summary><p>Да, ремонтирую узлы системы оттайки, вентиляторы, датчики.</p></details>
         </div>
     </section>
 
@@ -497,7 +540,7 @@
     <section id="cta" class="final-cta">
         <div class="container">
             <h2>Опишите проблему — скажу ориентир цены до выезда</h2>
-            <p>Срочный ремонт холодильников на дому в 8 городах. Приезжаю лично. Гарантия 1 год + акт.</p>
+            <p>Срочный ремонт холодильников на дому. Приезжаю лично. Гарантия 1 год.</p>
             
             <form class="final-form" onsubmit="event.preventDefault(); alert('Спасибо за заявку! Я перезвоню вам в течение 5 минут.');">
                 <select required>
@@ -509,19 +552,9 @@
                     <option value="Фрязино">Фрязино</option>
                     <option value="Щёлково">Щёлково</option>
                     <option value="Сергиев Посад">Сергиев Посад</option>
-                    <option value="Красноармейск">Красноармейск</option>
                 </select>
                 <input type="text" placeholder="Марка холодильника" required>
-                <select required>
-                    <option value="" disabled selected>Что случилось?</option>
-                    <option value="Не морозит">Не морозит</option>
-                    <option value="Течет">Течет вода</option>
-                    <option value="Шумит">Сильно шумит</option>
-                    <option value="Не включается">Не включается</option>
-                    <option value="Другое">Другая проблема</option>
-                </select>
                 <input type="tel" placeholder="Ваш телефон" required>
-                <input type="text" class="full-width" placeholder="Удобное время для звонка/приезда">
                 <button type="submit" class="btn btn-primary full-width">Узнать стоимость ремонта</button>
             </form>
         </div>
@@ -533,21 +566,14 @@
         </div>
     </footer>
 
-    <!-- Скрипт для прокрутки и анимации формы -->
+    <!-- Скрипт прокрутки к форме -->
     <script>
         function scrollToForm(symptomValue) {
             const select = document.querySelector('#top-form select');
             if (symptomValue && select) {
                 select.value = symptomValue;
             }
-            
-            // Скроллим наверх
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-
-            // Анимация формы
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             const formBlock = document.getElementById('top-form');
             if (formBlock) {
                 formBlock.style.transition = 'all 0.4s ease';
