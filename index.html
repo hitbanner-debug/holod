@@ -376,6 +376,34 @@
             display: block;
         }
 
+        @media (max-width: 1024px) {
+            .hero-text-card { padding: 40px 30px; }
+            .hero-photo-card { height: 500px; }
+        }
+
+        @media (max-width: 900px) {
+            .hero-container { grid-template-columns: 1fr; }
+            .hero-photo-card { 
+                order: -1; 
+                height: 450px; 
+            }
+            .hero-text-card h1 { font-size: 32px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 20px 0 40px; }
+            .hero-text-card { padding: 30px 20px; }
+            .hero-text-card h1 { font-size: 26px; }
+            
+            .hero-photo-card { 
+                height: 400px; 
+                border-radius: 16px; 
+            }
+
+            .hero-buttons { flex-direction: column; }
+            .hero-btn-primary, .hero-btn-outline { width: 100%; text-align: center; }
+        }
+
         /* ==========================================================================
            СИМПТОМЫ И ОСТАЛЬНОЙ САЙТ
            ========================================================================== */
@@ -424,9 +452,9 @@
         .faq-item p { padding: 0 20px 20px 20px; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: 15px; padding-top: 15px; }
 
         /* ==========================================================================
-           БЛОК ОТЗЫВОВ (ДОБАВЛЕННЫЙ)
+           БЛОК ОТЗЫВОВ (ПЕРЕНЕСЕН НАВЕРХ)
            ========================================================================== */
-        .reviews-section { background: var(--bg-white); padding: 80px 0; }
+        .reviews-section { padding: 80px 0; }
         .reviews-header { text-align: center; margin-bottom: 40px; }
         .reviews-header p { font-size: 18px; color: var(--text-muted); }
 
@@ -557,7 +585,6 @@
             <!-- Левый блок: текст в белой плашке -->
             <div class="hero-text-card">
                 <h1>Ремонт холодильников<br><span>на дому</span></h1>
-                <!-- Имя заменено на Дмитрий -->
                 <p class="hero-subtitle">Частный мастер Дмитрий. Опыт работы более 8 лет. Приезжаю лично.<br>Диагностика → согласование цены → ремонт.</p>
 
                 <ul class="hero-features">
@@ -593,7 +620,7 @@
                 </div>
             </div>
 
-            <!-- Правый блок: фото (Имя картинки оставил прежним, чтобы не сломалось) -->
+            <!-- Правый блок: фото -->
             <div class="hero-photo-card">
                 <img src="Oleg (2).png" alt="Мастер Дмитрий">
             </div>
@@ -653,8 +680,24 @@
         </div>
     </section>
 
+    <!-- ОТЗЫВЫ (ПЕРЕНЕСЛИ ВВЕРХ) -->
+    <section class="reviews-section section section-light">
+        <div class="container">
+            <div class="reviews-header">
+                <h2 class="section-title" style="margin-bottom: 10px;">Некоторые отзывы моих клиентов</h2>
+                <p>Большинство клиентов обращаются ко мне по рекомендации знакомых</p>
+            </div>
+            <div class="reviews-slider">
+                <div class="review-card"><img src="review1.jpg" alt="Отзыв 1"></div>
+                <div class="review-card"><img src="review2.jpg" alt="Отзыв 2"></div>
+                <div class="review-card"><img src="review3.jpg" alt="Отзыв 3"></div>
+                <div class="review-card"><img src="review4.jpg" alt="Отзыв 4"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- ЦЕНЫ -->
-    <section id="prices" class="section section-light">
+    <section id="prices" class="section">
         <div class="container">
             <h2 class="section-title">Честные цены</h2>
             <div class="prices-table-wrapper">
@@ -681,7 +724,7 @@
     </section>
 
     <!-- О МАСТЕРЕ -->
-    <section id="about-master" class="section">
+    <section id="about-master" class="section section-light">
         <div class="container two-columns" style="align-items: center;">
             <div class="about-text">
                 <h2 class="section-title" style="text-align: left; margin-bottom: 20px;">Я — частный мастер. В чём ваша выгода?</h2>
@@ -696,7 +739,6 @@
                 <div style="width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; background: var(--bg-light);">
                     <img src="Oleg (2).png" alt="Частный мастер" style="width: 100%; height: 100%; object-fit: cover; object-position: center 10%; transform: scale(1.5);">
                 </div>
-                <!-- Имя заменено на Дмитрий -->
                 <h3 style="font-size: 24px; color: var(--text-main); margin-bottom: 5px;">Дмитрий</h3>
                 <p style="color: var(--secondary); font-weight: 600; font-size: 16px;">Ваш мастер по ремонту холодильников</p>
                 <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 14px;">Опыт работы: более 8 лет<br>Оригинальные запчасти всегда в багажнике</div>
@@ -705,7 +747,7 @@
     </section>
 
     <!-- КАК РАБОТАЮ -->
-    <section id="process" class="section section-light">
+    <section id="process" class="section">
         <div class="container">
             <h2 class="section-title">Как я работаю</h2>
             <div class="steps-grid">
@@ -720,7 +762,7 @@
     </section>
 
     <!-- ГАРАНТИЯ -->
-    <section id="guarantee" class="section">
+    <section id="guarantee" class="section section-light">
         <div class="container two-columns">
             <div class="guarantee-box">
                 <h3>
@@ -744,7 +786,7 @@
     </section>
 
     <!-- ГЕОГРАФИЯ -->
-    <section class="section section-light">
+    <section class="section">
         <div class="container">
             <h2 class="section-title">География и время выезда</h2>
             <div class="city-grid">
@@ -762,7 +804,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section">
+    <section class="section section-light">
         <div class="container" style="max-width: 800px;">
             <h2 class="section-title">Частые вопросы</h2>
             <details class="faq-item"><summary>Сколько стоит диагностика?</summary><p>0 ₽ при ремонте. Если ремонт мы не делаем — 1500 ₽ (выезд + диагностика).</p></details>
@@ -775,23 +817,7 @@
         </div>
     </section>
 
-    <!-- ОТЗЫВЫ (ДОБАВЛЕННЫЙ БЛОК) -->
-    <section class="reviews-section section section-light">
-        <div class="container">
-            <div class="reviews-header">
-                <h2 class="section-title" style="margin-bottom: 10px;">Некоторые отзывы моих клиентов</h2>
-                <p>Большинство клиентов обращаются ко мне по рекомендации знакомых</p>
-            </div>
-            <div class="reviews-slider">
-                <div class="review-card"><img src="review1.jpg" alt="Отзыв 1"></div>
-                <div class="review-card"><img src="review2.jpg" alt="Отзыв 2"></div>
-                <div class="review-card"><img src="review3.jpg" alt="Отзыв 3"></div>
-                <div class="review-card"><img src="review4.jpg" alt="Отзыв 4"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ФИНАЛЬНЫЙ CTA (НАСТОЯЩАЯ ФОРМА) -->
+    <!-- ФИНАЛЬНЫЙ CTA -->
     <section id="cta" class="final-cta">
         <div class="container">
             <h2>Опишите проблему — скажу ориентир цены до выезда</h2>
